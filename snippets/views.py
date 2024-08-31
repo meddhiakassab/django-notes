@@ -4,7 +4,9 @@ from rest_framework.parsers import JSONParser
 from django.http import HttpResponse, JsonResponse
 
 from django.views.decorators.csrf import csrf_exempt
+from rest_framework.decorators import api_view
 
+@api_view(['GET', 'POST'])
 @csrf_exempt
 def getAllorCreataSnippet(request):
     """
@@ -24,6 +26,7 @@ def getAllorCreataSnippet(request):
             return JsonResponse(serializer.data, status = 201)
         return JsonResponse(serializer.errors, status = 400)
 
+@api_view(['PUT', 'DELETE'])
 @csrf_exempt
 def oneSnippetApplication(request, pk):
     """
